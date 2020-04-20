@@ -204,7 +204,7 @@ first_step_eval = {
 if __name__ == '__main__':
 	pr_cnt_list = [("01", "00"), ("03", "00")]
 	baseline_steps = []
-	for PR, CNT in pr_cnt_list:
+	for i, (PR, CNT) in enumerate(pr_cnt_list):
 		fname = f"HuGaDB/HuGaDB_v1_walking_{PR}_{CNT}.txt"
 		acc_x, acc_y, acc_z = load_data(fname)
 		#plot_data(acc_x, acc_y, acc_z)
@@ -214,9 +214,15 @@ if __name__ == '__main__':
 		x_steps = pipeline(data, x_start, x_end)
 
 		baseline_step = get_central_step(data, x_steps)
-		#plt.figure(2)
-		#plt.plot(baseline_step)
+		
+		# Plot baseline step
+		"""
+		plt.plot(baseline_step)
+		plt.ylim((-15000, 30000))
 		#plt.show()
+		plt.savefig(f"baseline_step_{i}", dpi=150)
+		plt.clf()
+		"""
 
 		baseline_steps.append(baseline_step)
 
